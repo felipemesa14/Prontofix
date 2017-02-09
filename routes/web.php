@@ -12,3 +12,6 @@
 */
 
 Route::get('/', 'Auth\LoginController@showLoginForm');
+Route::post('Authentication', 'Auth\LoginController@login');
+Route::get('ShowRegisterUsers', 'Auth\RegisterController@showRegistrationForm');
+Route::post('SaveRegisterUsers', 'Auth\RegisterController@register');
