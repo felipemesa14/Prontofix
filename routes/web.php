@@ -12,6 +12,9 @@
 */
 
 Route::get('/', 'Auth\LoginController@showLoginForm');
-Route::post('Authentication', 'Auth\LoginController@login');
-Route::get('ShowRegisterUsers', 'Auth\RegisterController@showRegistrationForm');
-Route::post('SaveRegisterUsers', 'Auth\RegisterController@register');
+Route::get('/home', 'Home\Homecontroller@index');
+Route::post('Authentication', 'Auth\LoginController@login')->name('Auth');
+Route::get('ShowRegisterUsers', 'Auth\RegisterController@showRegistrationForm')->name('show.user.register');
+Route::post('SaveRegisterUsers', 'Auth\RegisterController@register')->name('save.user');
+Route::get('logout', 'Auth\LoginController@logout');
+//Route::resource('Product','RegisterProduct');

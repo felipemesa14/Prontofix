@@ -24,12 +24,12 @@
             <div class="login-title"><strong>Bienvenido</strong>,<br> Por Favor Ingresa los datos para registrarte en el
                 sistema.
             </div>
-
-            {{Form::open(['action'=> 'Auth\RegisterController@register', 'method'=>'post','class'=>'form-horizontal'])}}
+            {{Form::open(['route'=> 'save.user', 'method'=>'post','class'=>'form-horizontal'])}}
+            {{Form::token()}}
             <div class="form-group">
                 <div class="col-md-12">
-                    {{Form::token()}}
-                    {{Form::text('name', '', ['class' => 'form-control','placeholder'=>'Nombre de Usuario'])}}
+                    {{Form::label('name', 'Nombres completo')}}
+                    {{Form::text('name', '', ['class' => 'form-control','placeholder'=>'Nombre Completo'])}}
                 </div>
             </div>
             <div class="form-group">
@@ -44,7 +44,7 @@
             </div>
             <div class="form-group">
                 <div class="col-md-6">
-                    {{Form::submit('Registrarse',['class'=>'btn btn-info btn-block'])}}
+                    {{Form::submit('Registrarse',['class'=>'btn btn-success btn-block'])}}
                     {{--<button class="btn btn-info btn-block">Registrar</button>--}}
                 </div>
             </div>

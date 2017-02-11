@@ -21,31 +21,29 @@
     <div class="login-box animated fadeInDown">
         {{--<div class="login-logo"></div>--}}
         <div class="login-body">
-            <div class="login-title"><strong>Bienvenido</strong>, Por Favor Ingresa los datos</div>
-            <form action="{{URL::to('Authentication')}}" class="form-horizontal" method="post">
-                <div class="form-group">
-                    <div class="col-md-12">
-                        <input id="email" name="email" type="email" class="form-control"
-                               placeholder="Correo Electronico"/>
-                    </div>
+            <div class="login-title"><strong>Bienvenido</strong>, Login de usuario</div>
+            {{Form::open(['route'=> 'Auth', 'method'=>'post','class'=>'form-horizontal'])}}
+            <div class="form-group">
+                <div class="col-md-12">
+                    {{Form::text('email',null,['class'=>'form-control','placeholder'=>'ingrese su E-mail'])}}
                 </div>
-                <div class="form-group">
-                    <div class="col-md-12">
-                        <input id="password" name="password" type="password" class="form-control"
-                               placeholder="Contrase&ntilde;a"/>
-                    </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    {{Form::password('password',['class'=>'form-control','placeholder'=>'ingrese su password'])}}
                 </div>
-                <div class="form-group">
-                    <div class="col-lg-6 col-sm-6 col-md-6">
-                        <a href="{{URL::to('ShowRegisterUsers')}}">
-                            <button type="button" class="btn btn-info">Registrar</button>
-                        </a>
-                    </div>
-                    <div class="col-md-6">
-                        <button class="btn btn-success">Ingresar</button>
-                    </div>
+            </div>
+            <div class="form-group">
+                <div class="col-lg-6 col-sm-6 col-md-6">
+                    {{--<a href="{{route('show.user.register')}}">--}}
+                        {{--{{Form::button('Registrar',['class'=>'btn btn-info btn-block'])}}--}}
+                    {{--</a>--}}
                 </div>
-            </form>
+                <div class="col-md-6">
+                    {{Form::submit('Ingresar',['class'=>'btn btn-success btn-block'])}}
+                </div>
+            </div>
+            {{Form::Close()}}
         </div>
         <div class="login-footer">
             <div class="pull-left">
