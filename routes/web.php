@@ -11,10 +11,9 @@
 |
 */
 
-Route::get('/', 'Auth\LoginController@showLoginForm');
-Route::get('/home', 'Home\Homecontroller@index');
-Route::post('Authentication', 'Auth\LoginController@login')->name('Auth');
-Route::get('ShowRegisterUsers', 'Auth\RegisterController@showRegistrationForm')->name('show.user.register');
-Route::post('SaveRegisterUsers', 'Auth\RegisterController@register')->name('save.user');
-Route::get('logout', 'Auth\LoginController@logout');
-//Route::resource('Product','RegisterProduct');
+Route::get('/', function () {
+    return view('welcome');
+});
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');

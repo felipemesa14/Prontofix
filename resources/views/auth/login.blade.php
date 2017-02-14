@@ -1,64 +1,68 @@
-<!DOCTYPE html>
-<html lang="en" class="body-full-height">
-<head>
-    <!-- META SECTION -->
-    <title>Prontofix S.A</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+@extends('layouts.app')
 
-    <link rel="icon" type="image/x-icon"/>
-    <!-- END META SECTION -->
+@section('content')
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading">Login</div>
+                <div class="panel-body">
+                    <form class="form-horizontal" role="form" method="POST" action="{{ route('login') }}">
+                        {{ csrf_field() }}
 
-    <!-- CSS INCLUDE -->
-    {!!Html::Style('Template/css/theme-blue.css')!!}
-            <!-- EOF CSS INCLUDE -->
-</head>
-<body>
+                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                            <label for="email" class="col-md-4 control-label">Correo Electronico</label>
 
-<div class="login-container">
+                            <div class="col-md-6">
+                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
 
-    <div class="login-box animated fadeInDown">
-        {{--<div class="login-logo"></div>--}}
-        <div class="login-body">
-            <div class="login-title"><strong>Bienvenido</strong>, Login de usuario</div>
-            {{Form::open(['route'=> 'Auth', 'method'=>'post','class'=>'form-horizontal'])}}
-            <div class="form-group">
-                <div class="col-md-12">
-                    {{Form::text('email',null,['class'=>'form-control','placeholder'=>'ingrese su E-mail'])}}
+                                @if ($errors->has('email'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                            <label for="password" class="col-md-4 control-label">Contraseña</label>
+
+                            <div class="col-md-6">
+                                <input id="password" type="password" class="form-control" name="password" required>
+
+                                @if ($errors->has('password'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-4">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Recordarme
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-8 col-md-offset-4">
+                                <button type="submit" class="btn btn-primary">
+                                    Iniociar Sessión
+                                </button>
+
+                                <a class="btn btn-link" href="{{ route('password.request') }}">
+                                   ¿Olvidaste tu contraseña?
+                                </a>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-            </div>
-            <div class="form-group">
-                <div class="col-md-12">
-                    {{Form::password('password',['class'=>'form-control','placeholder'=>'ingrese su password'])}}
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-lg-6 col-sm-6 col-md-6">
-                    {{--<a href="{{route('show.user.register')}}">--}}
-                        {{--{{Form::button('Registrar',['class'=>'btn btn-info btn-block'])}}--}}
-                    {{--</a>--}}
-                </div>
-                <div class="col-md-6">
-                    {{Form::submit('Ingresar',['class'=>'btn btn-success btn-block'])}}
-                </div>
-            </div>
-            {{Form::Close()}}
-        </div>
-        <div class="login-footer">
-            <div class="pull-left">
-                &copy; 2017 Prontofix
             </div>
         </div>
     </div>
-
 </div>
-
-</body>
-</html>
-
-
-
-
-
-
+@endsection
