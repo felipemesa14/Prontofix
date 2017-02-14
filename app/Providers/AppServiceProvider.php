@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers;
+namespace Prontofix\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
