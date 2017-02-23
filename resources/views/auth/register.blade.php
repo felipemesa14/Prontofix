@@ -1,20 +1,20 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Register</div>
-                <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ route('register') }}">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Registrar</div>
+                    <div class="panel-body">
+                        {!! Form::open(['route' => 'register','method'=>'post','class'=>'form-horizontal']) !!}
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label for="name" class="col-md-4 control-label">Name</label>
+                            {!! Form::label('name', 'Nombre Completo', ['class' => 'col-md-4 control-label']) !!}
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
+                                {!! Form::text('name',old('name'),['class'=>'form-control','required'=>'required','autofocus'=>'autofocus','placeholder'=>'Ingrese su nombre completo']) !!}
 
                                 @if ($errors->has('name'))
                                     <span class="help-block">
@@ -25,10 +25,10 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+                            {!! Form::label('email', 'Correo Electronico', ['class' => 'col-md-4 control-label']) !!}
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
+                                {!! Form::email('email',old('email'),['class'=>'form-control','placeholder'=>'ingrese su E-mail','required'=>'required']) !!}
 
                                 @if ($errors->has('email'))
                                     <span class="help-block">
@@ -39,10 +39,11 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
+                            {!! Form::label('password','Contraseña' ,['class' => 'col-md-4 control-label']) !!}
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
+
+                                {!! Form::password('password',['class'=>'form-control','required'=>'required','placeholder'=>'Ingrese su contraseña']) !!}
 
                                 @if ($errors->has('password'))
                                     <span class="help-block">
@@ -53,24 +54,22 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
+                            {!! Form::label('password-confirm', 'Confirmar Contraseña', ['class' => 'col-md-4 control-label']) !!}
 
                             <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                                {!! Form::password('password-confirm',['class'=>'form-control','required'=>'required','placeholder'=>'Confirmar Contraseña']) !!}
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Register
-                                </button>
+                                {!! Form::submit('Registrar',['class'=>'btn btn-primary btn-block']) !!}
                             </div>
                         </div>
-                    </form>
+                        {!! Form::close() !!}
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 @endsection
